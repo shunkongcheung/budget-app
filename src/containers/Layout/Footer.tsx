@@ -2,7 +2,7 @@ import React, { memo } from "react";
 
 import classNames from "./Footer.module.css";
 
-const Footer: React.FC<FooterProps> = () => {
+const Footer: React.FC = () => {
   return (
     <footer className={classNames.container}>
       <span>Budget App &#169;</span>
