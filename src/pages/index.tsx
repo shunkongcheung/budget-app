@@ -1,10 +1,10 @@
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, InferGetStaticPropsType } from "next";
 import axios from "axios";
 
 import Statistics from "../containers/Statistics";
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { host, cookie } = ctx.req.headers;
+  const { host, cookie } = ctx.req?.headers || {};
 
   try {
     const [categories, days] = await Promise.all([
@@ -27,6 +27,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     return {
       props: {
         categories,
+        days,
       },
     };
   } catch (err) {
@@ -39,6 +40,8 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   }
 };
 
-export default function HomePage() {
-  return <Statistics />;
+export default function HomePage(
+  props: InferGetStaticPropsType<typeof getServerSideProps>
+) {
+  return <Statistics {...(props as any)} />;
 }
