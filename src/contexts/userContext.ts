@@ -1,11 +1,11 @@
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import { useCookies } from "react-cookie";
 
 import { JWT_TOKEN_COOKIE_NAME } from "../constants";
 
 export interface User {
   clearToken: () => any;
-  storeToken: (token: string, rmbMe: boolean) => any;
+  storeToken: (token: string, username: string) => any;
   username: string;
   token: string;
 }
@@ -25,39 +25,14 @@ export const useUserProvider = () => {
 
   const token = cookies[JWT_TOKEN_COOKIE_NAME];
 
-  const getDataFromToken = useCallback((token: string) => {
-    var base64Url = token.split(".")[1];
-    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    var jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
-
-    return JSON.parse(jsonPayload);
-  }, []);
-
-  const storeToken = useCallback((token: string) => {
-    const { exp, username } = getDataFromToken(token);
-
-    // if not remember me, pass undefined to make it a session cookie
-    setCookie(JWT_TOKEN_COOKIE_NAME, token, { expires: exp });
+  const storeToken = useCallback((token: string, username) => {
+    setCookie(JWT_TOKEN_COOKIE_NAME, token, { expires: null });
     setUsername(username);
   }, []);
 
   const clearToken = () => {
     removeCookie(JWT_TOKEN_COOKIE_NAME);
   };
-
-  useEffect(() => {
-    if (token) {
-      const { username } = getDataFromToken(token);
-      setUsername(username || "");
-    }
-  }, [token]);
 
   return { token, storeToken, username, clearToken };
 };
