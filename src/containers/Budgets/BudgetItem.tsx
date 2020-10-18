@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import Link from "next/link";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
 import classNames from "./BudgetItem.module.css";
 
@@ -10,7 +10,7 @@ interface BugetItemProps {
   id: string;
   title: string;
   category: Category;
-  date: Date;
+  date: Moment;
   amount: number;
 }
 
