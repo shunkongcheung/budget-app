@@ -1,5 +1,8 @@
 .container {
   min-height: 520px;
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 .quote {
   margin-top: auto;
