@@ -9,6 +9,10 @@ const Statistics: React.FC<StatisticsProps> = () => {
       <Head>
         <meta name="description" content="statistics" />
       </Head>
+      <h1>Spending per day</h1>
+      <div>TBD graph put here</div>
+      <h1>Spending per category</h1>
+      <div>TBD graph put here</div>
     </>
   );
 };
