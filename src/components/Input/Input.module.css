@@ -1,0 +1,32 @@
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formLabel {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  display: block;
+  width: calc(100% - 1.5rem);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.helpText {
+  display: block;
+  margin-top: 0.25rem;
+
+  color: red;
+
+  font-size: 80%;
+  font-weight: 400;
+}
