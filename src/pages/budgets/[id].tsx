@@ -8,17 +8,25 @@ import BudgetEdit from "../../containers/BudgetEdit";
 
 type Category = "B&F" | "Supplies" | "Bill";
 
+interface BudgetItem {
+  title: string;
+  category: Category;
+  date: string;
+  amount: number;
+}
+
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { id } = ctx.query;
-  console.log("on budgets/[id]. ID is: ", id);
+  const { cookie, host } = ctx.req.headers;
+
+  const data = await new Promise((resolve) => {
+    axios
+      .get(`http://${host}/api/budgets/${id}`, { headers: { cookie } })
+      .then((res) => resolve(res.data));
+  });
 
   return {
-    props: {
-      title: "Original Title",
-      date: moment().toISOString(),
-      category: "B&F" as Category,
-      amount: 5,
-    },
+    props: data as BudgetItem,
   };
 };
 
