@@ -1,0 +1,17 @@
+.container {
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.createBtn {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.createContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
