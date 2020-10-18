@@ -17,8 +17,9 @@ const Login: React.FC<LoginProps> = () => {
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     const {
       user: { displayName },
-      credential: { accessToken },
-    } = (await firebase.auth().signInWithPopup(googleAuthProvider)) as any;
+    } = await firebase.auth().signInWithPopup(googleAuthProvider);
+
+    const accessToken = await firebase.auth().currentUser.getIdToken();
 
     storeToken(accessToken, displayName);
     router.push("/");
