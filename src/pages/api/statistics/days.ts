@@ -14,8 +14,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return day;
   });
 
-  console.log(days);
-
   if (req.method === "GET") {
     res.statusCode = 200;
     const [bAndF, bill, supplies] = await Promise.all([
@@ -36,7 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       ),
     ]);
 
-    res.json({ bAndF, bill, supplies });
+    res.json({ bAndF, bill, supplies, days });
   } else {
     res.statusCode = 404;
     res.json({ message: "Method not found" });
