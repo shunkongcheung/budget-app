@@ -28,42 +28,40 @@ function Budget() {
       <Head>
         <meta name="description" content="budget page" />
       </Head>
-      <div className={classNames.container}>
-        <h1>BUDGETS</h1>
-        <div className={classNames.createContainer}>
-          <Link href="/budgets/edit">
-            <button className={classNames.createBtn}>Add Item</button>
-          </Link>
-        </div>
-        <BudgetItem
-          id="item1"
-          title="Eat with my babe"
-          category="B&F"
-          date={getRandomDate(start0)}
-          amount={20.5}
-        />
-        <BudgetItem
-          id="item2"
-          title="Purchased some medicine"
-          category="Supplies"
-          date={getRandomDate(start1)}
-          amount={45.2}
-        />
-        <BudgetItem
-          id="item3"
-          title="Mobile"
-          category="Bill"
-          date={getRandomDate(start2)}
-          amount={30}
-        />
-        <BudgetItem
-          id="item4"
-          title="Mobile"
-          category="Bill"
-          date={getRandomDate(new Date())}
-          amount={30}
-        />
+      <h1>BUDGETS</h1>
+      <div className={classNames.createContainer}>
+        <Link href="/budgets/edit">
+          <button className={classNames.createBtn}>Add Item</button>
+        </Link>
       </div>
+      <BudgetItem
+        id="item1"
+        title="Eat with my babe"
+        category="B&F"
+        date={getRandomDate(start0)}
+        amount={20.5}
+      />
+      <BudgetItem
+        id="item2"
+        title="Purchased some medicine"
+        category="Supplies"
+        date={getRandomDate(start1)}
+        amount={45.2}
+      />
+      <BudgetItem
+        id="item3"
+        title="Mobile"
+        category="Bill"
+        date={getRandomDate(start2)}
+        amount={30}
+      />
+      <BudgetItem
+        id="item4"
+        title="Mobile"
+        category="Bill"
+        date={getRandomDate(new Date())}
+        amount={30}
+      />
     </>
   );
 }
