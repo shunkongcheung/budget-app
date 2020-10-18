@@ -1,0 +1,9 @@
+.loginBtn {
+  display: flex;
+  align-items: center;
+}
+
+.loginTxt {
+  margin-left: 0.5rem;
+  font-weight: 700;
+}
