@@ -1,5 +1,5 @@
-import Home from "../containers/Home";
+import Statistics from "../containers/Statistics";
 
 export default function HomePage() {
-  return <Home />;
+  return <Statistics />;
 }
