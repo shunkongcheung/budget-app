@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({}) => {
           Budgets
         </a>
       </li>
-      {!isLogin && (
+      {isLogin && (
         <li className={`${classNames.listItem} ${classNames.right}`}>
           <a className={classNames.link} href="#" onClick={handleLogout}>
             LOGOUT

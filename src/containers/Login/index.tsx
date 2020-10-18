@@ -1,4 +1,6 @@
 import React, { memo, useCallback } from "react";
+import { useRouter } from "next/router";
+import firebase from "firebase";
 
 import { useUserContext } from "../../contexts";
 
@@ -8,11 +10,19 @@ interface LoginProps {}
 
 const Login: React.FC<LoginProps> = () => {
   const { storeToken } = useUserContext();
+  const router = useRouter();
 
-  const handleLogin = useCallback(() => {
+  const handleLogin = useCallback(async () => {
     // TODO: finish this function
-    // storeToken()
-  }, [storeToken]);
+    const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    const {
+      user: { displayName },
+      credential: { accessToken },
+    } = (await firebase.auth().signInWithPopup(googleAuthProvider)) as any;
+
+    storeToken(accessToken, displayName);
+    router.push("/");
+  }, [storeToken, router]);
 
   return (
     <>
