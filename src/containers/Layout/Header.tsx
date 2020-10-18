@@ -1,13 +1,23 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
+import { useRouter } from "next/router";
+
+import { useUserContext } from "../../contexts";
 
 import classNames from "./Header.module.css";
 
-interface HeaderProps {
-  isLogin?: boolean;
-  handleLogout: () => any;
-}
+interface HeaderProps {}
 
-const Header: React.FC<HeaderProps> = ({ isLogin = false, handleLogout }) => {
+const Header: React.FC<HeaderProps> = ({}) => {
+  const { token, clearToken } = useUserContext();
+  const router = useRouter();
+
+  const handleLogout = useCallback(() => {
+    clearToken();
+    router.push("/login");
+  }, [clearToken, router]);
+
+  const isLogin = !!token;
+
   return (
     <ul className={classNames.container}>
       <li className={classNames.listItem}>

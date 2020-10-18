@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useState } from "react";
+import React, { ReactElement } from "react";
 import Head from "next/head";
 
 import Footer from "./Footer";
@@ -10,15 +10,6 @@ interface AppProps {
 }
 
 function App({ children }: AppProps) {
-  const [isLogined, setIsLogined] = useState(false);
-
-  const handleLoginSuccess = useCallback(() => {
-    setIsLogined(true);
-  }, []);
-  const handleLogout = useCallback(() => {
-    setIsLogined(false);
-  }, []);
-
   return (
     <>
       <Head>
@@ -34,7 +25,7 @@ function App({ children }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header handleLogout={handleLogout} />
+      <Header />
       <div className={classNames.container}>{children}</div>
       <div className={classNames.quote}>
         Man is born free and everywhere he is in chains. -- Jean-Jacques
