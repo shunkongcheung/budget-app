@@ -30,13 +30,11 @@ const Header: React.FC<HeaderProps> = ({}) => {
           Budgets
         </a>
       </li>
-      {isLogin && (
-        <li className={`${classNames.listItem} ${classNames.right}`}>
-          <a className={classNames.link} href="#" onClick={handleLogout}>
-            LOGOUT
-          </a>
-        </li>
-      )}
+      <li className={`${classNames.listItem} ${classNames.right}`}>
+        <a className={classNames.link} href="#" onClick={handleLogout}>
+          LOGOUT
+        </a>
+      </li>
     </ul>
   );
 };
