@@ -34,7 +34,7 @@ const BugetItem: React.FC<BugetItemProps> = ({
   }, [date]);
 
   return (
-    <Link href={`/budgets/edit/${id}`}>
+    <Link href={`/budgets/${id}`}>
       <div className={classNames.container}>
         <div className={classNames.header}>
           <h5 className={classNames.title}>{title}</h5>

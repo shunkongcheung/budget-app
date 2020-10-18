@@ -28,7 +28,7 @@ function Budget({ budgets }: BudgetsProps) {
       </Head>
       <h1>BUDGETS</h1>
       <div className={classNames.createContainer}>
-        <Link href="/budgets/edit">
+        <Link href="/budgets/create">
           <button className={classNames.createBtn}>Add Item</button>
         </Link>
       </div>
