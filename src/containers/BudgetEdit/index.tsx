@@ -26,6 +26,10 @@ interface BudgetEditProps extends Partial<BudgetItem> {
 const BudgetEdit: React.FC<BudgetEditProps> = ({
   handleDelete,
   handleSubmit,
+  title = "",
+  category = "",
+  date = moment(),
+  amount = 0,
 }) => {
   const schema = useMemo(
     () =>
@@ -46,7 +50,7 @@ const BudgetEdit: React.FC<BudgetEditProps> = ({
     <>
       <h1>Budget Edit</h1>
       <Formik
-        initialValues={{ title: "", category: "", date: moment(), amount: 0 }}
+        initialValues={{ title, category, date, amount }}
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
