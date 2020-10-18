@@ -1,0 +1,9 @@
+.container {
+  min-height: 520px;
+}
+.quote {
+  margin-top: auto;
+  text-align: right;
+  color: #666;
+  margin-right: 22px;
+}
