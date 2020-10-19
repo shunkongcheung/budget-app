@@ -29,8 +29,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     res.statusCode = 200;
     res.json(existingData);
-  }
-  if (req.method === "PUT") {
+    return;
+  } else if (req.method === "PUT") {
     const data = await getValidatePayload(req.body);
     await db
       .collection("budgets")
@@ -39,6 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.statusCode = 200;
     res.json(data);
+    return;
   } else if (req.method === "DELETE") {
     await db
       .collection("budgets")
