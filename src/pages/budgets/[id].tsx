@@ -70,7 +70,7 @@ export default function BudgetUpdate(
   return (
     <BudgetEdit
       {...props}
-      date={moment(props.date)}
+      date={moment((props as any).date)}
       handleDelete={handleDelete}
       handleSubmit={handleSubmit}
     />

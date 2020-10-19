@@ -2,43 +2,74 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import moment from "moment";
 
-import {
-  getFirebaseAdmin,
-  getLoggedInUser,
-  getValidatePayload,
-} from "../../../utils";
+import { getValidatePayload } from "../../../utils";
+
+// TODO: should be remove when complete
+const getRandomDate = (start: Date) => {
+  const end = new Date();
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+};
+const start0 = new Date();
+start0.setDate(start0.getDate() - 10);
+
+const start1 = new Date();
+start1.setHours(start1.getHours() - 3);
+
+const start2 = new Date();
+start2.setMinutes(start2.getMinutes() - 10);
+
+const fakeData = [
+  {
+    id: "item1",
+    title: "Eat with my babe",
+    category: "B&F",
+    date: getRandomDate(start0).toISOString(),
+    amount: 20.5,
+  },
+  {
+    id: "item2",
+    title: "Purchased some medicine",
+    category: "Supplies",
+    date: getRandomDate(start1).toISOString(),
+    amount: 45.2,
+  },
+  {
+    id: "item3",
+    title: "Mobile Phone",
+    category: "Bill",
+    date: getRandomDate(start2).toISOString(),
+    amount: 30.5,
+  },
+  {
+    id: "item4",
+    title: "Lunch",
+    category: "B&F",
+    date: getRandomDate(new Date()).toISOString(),
+    amount: 15,
+  },
+];
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("at api budgets...", req.cookies);
-  const user = await getLoggedInUser(req.cookies.token);
-  const db = getFirebaseAdmin().firestore();
-  const docRef = db.collection("budgets");
 
   if (req.method === "GET") {
     res.statusCode = 200;
-    const snapshot = await docRef.where("createdBy", "==", user.uid).get();
-    if (snapshot.empty) {
-      res.json([]);
-    } else {
-      const data = [];
-      snapshot.forEach((doc) => {
-        const item = doc.data();
-        data.push({ ...item, id: doc.id, date: item.date.toDate().toString() });
-      });
+    const data = fakeData;
 
-      data.sort((a, b) => {
-        const [aDate, bDate] = [moment(a.date), moment(b.date)];
-        if (aDate > bDate) return 1;
-        if (aDate < bDate) return -1;
-        if (aDate === bDate) return 0;
-      });
-      res.json(data);
-    }
+    data.sort((a, b) => {
+      const [aDate, bDate] = [moment(a.date), moment(b.date)];
+      if (aDate > bDate) return 1;
+      if (aDate < bDate) return -1;
+      if (aDate === bDate) return 0;
+    });
+    res.json(data);
   }
   if (req.method === "POST") {
     const data = await getValidatePayload(req.body);
 
-    await docRef.doc().set({ ...data, createdBy: user.uid });
+    // TODO: handle create data
 
     res.statusCode = 200;
     res.json(data);

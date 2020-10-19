@@ -1,7 +1,5 @@
-import getFirebaseAdmin from "./getFirebaseAdmin";
-const getLoggedInUser = (token: string) => {
-  const admin = getFirebaseAdmin();
-  return admin.auth().verifyIdToken(token);
+const getLoggedInUser = async (token: string) => {
+  return { uid: "abcd" };
 };
 
 export default getLoggedInUser;

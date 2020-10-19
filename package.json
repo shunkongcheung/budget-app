@@ -8,12 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@react-firebase/auth": "^0.2.10",
     "@types/react-chartjs-2": "^2.5.7",
     "axios": "^0.20.0",
     "chart.js": "^2.9.4",
-    "firebase": "^7.24.0",
-    "firebase-admin": "^9.2.0",
     "formik": "^2.2.0",
     "moment": "^2.29.1",
     "next": "9.5.5",
