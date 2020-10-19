@@ -21,10 +21,11 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 
   try {
     if (!cookie) throw Error();
-    const data = await new Promise((resolve) => {
+    const data = await new Promise((resolve, reject) => {
       axios
         .get(`http://${host}/api/budgets/${id}`, { headers: { cookie } })
-        .then((res) => resolve(res.data));
+        .then((res) => resolve(res.data))
+        .catch(reject);
     });
 
     return {

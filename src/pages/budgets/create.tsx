@@ -9,12 +9,18 @@ export default function BudgetCreate() {
 
   const handleSubmit = useCallback(
     async (data) => {
-      await new Promise((resolve) => {
-        axios("/api/budgets", {
-          method: "POST",
-          data,
-        }).then(resolve);
-      });
+      try {
+        await new Promise((resolve, reject) => {
+          axios("/api/budgets", {
+            method: "POST",
+            data,
+          })
+            .then(resolve)
+            .catch(reject);
+        });
+      } catch (ex) {
+        router.push("/login");
+      }
 
       router.push("/budgets");
     },
