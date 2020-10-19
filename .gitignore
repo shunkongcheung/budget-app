@@ -32,8 +32,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-
-
-# firebase credentials
-/src/utils/budget-app-be403-firebase-adminsdk-rqr8p-06bb159b90.json
