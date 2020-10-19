@@ -18,6 +18,10 @@ function App({ children }: AppProps) {
           name="description"
           content="An example of using nextjs, reactjs, firebase, firestore, authentication to build a budget app"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet"
+        />
         <meta
           name="keywords"
           content="nextjs, reactjs, firebase, firestore, authentication"
