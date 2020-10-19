@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { NextApiRequest, NextApiResponse } from "next";
+import moment from "moment";
 
 import {
   getFirebaseAdmin,
@@ -8,6 +9,7 @@ import {
 } from "../../../utils";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log("at api budgets...", req.cookies);
   const user = await getLoggedInUser(req.cookies.token);
   const db = getFirebaseAdmin().firestore();
   const docRef = db.collection("budgets");
@@ -21,7 +23,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const data = [];
       snapshot.forEach((doc) => {
         const item = doc.data();
-        data.push({ ...item, id: doc.id, date: item.date.toString() });
+        data.push({ ...item, id: doc.id, date: item.date.toDate().toString() });
+      });
+
+      data.sort((a, b) => {
+        const [aDate, bDate] = [moment(a.date), moment(b.date)];
+        if (aDate > bDate) return 1;
+        if (aDate < bDate) return -1;
+        if (aDate === bDate) return 0;
       });
       res.json(data);
     }
