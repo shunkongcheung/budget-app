@@ -1,9 +1,59 @@
 .loginBtn {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .loginTxt {
-  margin-left: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
   font-weight: 700;
+}
+
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.content {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  background: white;
+  padding: 1.25rem;
+  border: 1px #ccc solid;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.description {
+  color: #888;
+  margin-bottom: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 220px;
+}
+
+.title {
+  color: #555;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
 }
