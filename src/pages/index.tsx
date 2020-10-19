@@ -4,9 +4,10 @@ import axios from "axios";
 import Statistics from "../containers/Statistics";
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { host, cookie } = ctx.req?.headers || {};
+  const { host, cookie } = ctx?.req?.headers || {};
 
   try {
+    if (!cookie) throw Error();
     const [categories, days] = await Promise.all([
       new Promise((resolve) => {
         axios
@@ -31,9 +32,8 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
       },
     };
   } catch (err) {
-    const { url } = ctx.req;
-    ctx.res.setHeader("location", `/login?goTo=${url}`);
     ctx.res.statusCode = 302;
+    ctx.res.setHeader("location", `/login`);
     ctx.res.end();
 
     return { props: {} };

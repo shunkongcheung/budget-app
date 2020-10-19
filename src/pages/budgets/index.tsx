@@ -21,15 +21,26 @@ interface BudgetsPageProps {
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { host, cookie } = ctx.req.headers;
 
-  const data = await new Promise((resolve) => {
-    axios
-      .get(`http://${host}/api/budgets`, { headers: { cookie } })
-      .then((res) => resolve(res.data));
-  });
+  try {
+    if (!cookie) throw Error();
+    const data = await new Promise((resolve) => {
+      axios({
+        method: "GET",
+        url: `http://${host}/api/budgets`,
+        headers: { cookie: cookie },
+      }).then((res) => resolve(res.data));
+    });
 
-  return {
-    props: { budgets: data as BudgetItem },
-  };
+    return {
+      props: { budgets: data as BudgetItem },
+    };
+  } catch (err) {
+    ctx.res.statusCode = 302;
+    ctx.res.setHeader("location", `/login?goTo=/budgets`);
+    ctx.res.end();
+
+    return { props: {} };
+  }
 };
 
 export default function BudgetsPage({ budgets }: BudgetsPageProps) {

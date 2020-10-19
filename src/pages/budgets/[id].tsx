@@ -19,15 +19,25 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { id } = ctx.query;
   const { cookie, host } = ctx.req.headers;
 
-  const data = await new Promise((resolve) => {
-    axios
-      .get(`http://${host}/api/budgets/${id}`, { headers: { cookie } })
-      .then((res) => resolve(res.data));
-  });
+  try {
+    if (!cookie) throw Error();
+    const data = await new Promise((resolve) => {
+      axios
+        .get(`http://${host}/api/budgets/${id}`, { headers: { cookie } })
+        .then((res) => resolve(res.data));
+    });
 
-  return {
-    props: data as BudgetItem,
-  };
+    return {
+      props: data as BudgetItem,
+    };
+  } catch (err) {
+    const { url } = ctx.req;
+    ctx.res.statusCode = 302;
+    ctx.res.setHeader("location", `/login?goTo=${url}`);
+    ctx.res.end();
+
+    return { props: {} };
+  }
 };
 
 export default function BudgetUpdate(
