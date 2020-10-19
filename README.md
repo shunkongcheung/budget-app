@@ -14,6 +14,10 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 ## About this Application
 
+Visit https://budget-app-inky.vercel.app/ to see the final product!
+
+To get started, visit: https://github.com/shunkongcheung/budget-app/tree/starter
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 This application will be connected firebase for authentication and database. 
