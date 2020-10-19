@@ -1,4 +1,4 @@
-import moment, { Moment } from "moment";
+import { Moment } from "moment";
 import getFirebaseAdmin from "./getFirebaseAdmin";
 
 const getSumOfCategory = async (
@@ -8,18 +8,20 @@ const getSumOfCategory = async (
   end?: Moment
 ) => {
   const db = getFirebaseAdmin().firestore();
-  const snapshot = await db.collection("budgets").get();
+  let query = db
+    .collection("budgets")
+    .where("createdBy", "==", uid)
+    .where("category", "==", category);
+
+  if (start) query = query.where("date", ">=", start);
+  if (end) query = query.where("date", "<", end);
+
+  const snapshot = await query.get();
 
   let sum = 0;
   snapshot.forEach((doc) => {
     const item = doc.data();
-    if (
-      item.createdBy === uid &&
-      item.category === category &&
-      (!start || moment(item.date.toDate()) >= start) &&
-      (!end || moment(item.date.toDate()) <= end)
-    )
-      sum += item.amount;
+    sum += item.amount;
   });
 
   return sum;
