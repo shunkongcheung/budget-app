@@ -18,6 +18,10 @@ function App({ children }: AppProps) {
           name="description"
           content="An example of using nextjs, reactjs, firebase, firestore, authentication to build a budget app"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet"
+        />
         <meta
           name="keywords"
           content="nextjs, reactjs, firebase, firestore, authentication"
@@ -26,11 +30,9 @@ function App({ children }: AppProps) {
       </Head>
 
       <Header />
-      <div className={classNames.container}>{children}</div>
-      <div className={classNames.quote}>
-        Man is born free and everywhere he is in chains. -- Jean-Jacques
-        Rousseau
-      </div>
+      <main className={classNames.main}>
+        <div className={classNames.container}>{children}</div>
+      </main>
       <Footer />
     </>
   );

@@ -8,7 +8,7 @@ import classNames from "./Header.module.css";
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = ({}) => {
-  const { token, clearToken } = useUserContext();
+  const { clearToken } = useUserContext();
   const router = useRouter();
 
   const handleLogout = useCallback(() => {
@@ -16,26 +16,26 @@ const Header: React.FC<HeaderProps> = ({}) => {
     router.push("/login");
   }, [clearToken, router]);
 
-  const isLogin = !!token;
-
   return (
-    <ul className={classNames.container}>
-      <li className={classNames.listItem}>
-        <a className={classNames.link} href="/">
-          Home
-        </a>
-      </li>
-      <li className={classNames.listItem}>
-        <a className={classNames.link} href="/budgets">
-          Budgets
-        </a>
-      </li>
-      <li className={`${classNames.listItem} ${classNames.right}`}>
-        <a className={classNames.link} href="#" onClick={handleLogout}>
-          LOGOUT
-        </a>
-      </li>
-    </ul>
+    <div className={classNames.container}>
+      <ul className={classNames.content}>
+        <li className={classNames.listItem}>
+          <a className={classNames.brand} href="/">
+            BUDGET APP
+          </a>
+        </li>
+        <li className={classNames.listItem}>
+          <a className={classNames.link} href="/budgets">
+            Budgets
+          </a>
+        </li>
+        <li className={`${classNames.listItem} ${classNames.right}`}>
+          <a className={classNames.logout} href="#" onClick={handleLogout}>
+            LOGOUT
+          </a>
+        </li>
+      </ul>
+    </div>
   );
 };
 
