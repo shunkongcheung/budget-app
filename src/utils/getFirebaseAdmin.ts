@@ -18,6 +18,7 @@ const getFirebaseAdmin = () => {
       credential: admin.credential.cert(serviceAccount as any),
       databaseURL: "https://budget-app-be403.firebaseio.com",
     });
+    return admin;
   } catch (error) {
     // https://leerob.io/blog/nextjs-firebase-serverless
     /*
@@ -27,9 +28,10 @@ const getFirebaseAdmin = () => {
     if (!/already exists/u.test(error.message)) {
       // eslint-disable-next-line no-console
       console.error("Firebase admin initialization error", error.stack);
+      throw Error(error);
     }
+    return admin;
   }
-  return admin;
 };
 
 export default getFirebaseAdmin;
