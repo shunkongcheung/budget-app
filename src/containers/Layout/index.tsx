@@ -26,11 +26,9 @@ function App({ children }: AppProps) {
       </Head>
 
       <Header />
-      <div className={classNames.container}>{children}</div>
-      <div className={classNames.quote}>
-        Man is born free and everywhere he is in chains. -- Jean-Jacques
-        Rousseau
-      </div>
+      <main className={classNames.main}>
+        <div className={classNames.container}>{children}</div>
+      </main>
       <Footer />
     </>
   );

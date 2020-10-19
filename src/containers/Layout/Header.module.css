@@ -1,11 +1,27 @@
 .container {
+  background-color: #fefefe;
+  border-bottom: #eee solid 1px;
+}
+.content {
+  display: flex;
   background: 1px solid #e7e7e7;
-  background-color: #e7e7e7;
 
+  max-width: 1280px;
+  margin: 0 auto;
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  padding: 1.5rem 1rem;
   overflow: hidden;
+  align-items: center;
+}
+
+.brand {
+  display: block;
+  color: #333;
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  padding: 0 16px 0 0;
+  text-decoration: none;
 }
 
 .listItem {
@@ -16,10 +32,25 @@
   display: block;
   color: #666;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0 16px;
   text-decoration: none;
 }
 
 .right {
-  float: right;
+  margin-left: auto;
+}
+
+.logout {
+  display: block;
+  text-align: center;
+  padding: 7px 16px;
+  text-decoration: none;
+
+  border-radius: 5px;
+  color: #28a745;
+  border: #28a745 solid 1px;
+}
+.logout:hover {
+  background: #28a745;
+  color: white;
 }
