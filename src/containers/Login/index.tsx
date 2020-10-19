@@ -13,7 +13,6 @@ const Login: React.FC<LoginProps> = () => {
   const router = useRouter();
 
   const handleLogin = useCallback(async () => {
-    // TODO: finish this function
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     const {
       user: { displayName },
@@ -21,8 +20,10 @@ const Login: React.FC<LoginProps> = () => {
 
     const accessToken = await firebase.auth().currentUser.getIdToken(true);
 
+    const { goTo } = router.query;
+
     storeToken(accessToken, displayName);
-    router.push("/");
+    router.push((goTo as string) || "/");
   }, [storeToken, router]);
 
   return (
