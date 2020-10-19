@@ -15,7 +15,7 @@ const getFirebaseAdmin = () => {
       client_x509_cert_url: process.env.FIREBASE_CERT_URL,
     };
 
-		console.log('getting service from ', JSON.stringify(serviceAccount, null, 4))
+		console.error('getting service from ', JSON.stringify(serviceAccount, null, 4))
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount as any),
       databaseURL: "https://budget-app-be403.firebaseio.com",
