@@ -7,9 +7,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { host, cookie } = ctx?.req?.headers || {};
 
   try {
-    console.log("1");
     if (!cookie) throw Error();
-    console.log("2");
     const [categories, days] = await Promise.all([
       new Promise((resolve, reject) => {
         axios
