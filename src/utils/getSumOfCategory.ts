@@ -7,6 +7,9 @@ const getSumOfCategory = async (
   start?: Moment,
   end?: Moment
 ) => {
+  // TODO:
+  // using firebase admin's firestore to query database
+  // calculate sum per category
   return 0;
 };
 

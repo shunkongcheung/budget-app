@@ -4,7 +4,8 @@ import moment from "moment";
 
 import { getValidatePayload } from "../../../utils";
 
-// TODO: should be remove when complete
+// TODO:
+// to be removed when complete
 const getRandomDate = (start: Date) => {
   const end = new Date();
   return new Date(
@@ -52,24 +53,18 @@ const fakeData = [
 ];
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("at api budgets...", req.cookies);
-
   if (req.method === "GET") {
+    // TODO:
+    // fetch real data
     res.statusCode = 200;
     const data = fakeData;
-
-    data.sort((a, b) => {
-      const [aDate, bDate] = [moment(a.date), moment(b.date)];
-      if (aDate > bDate) return 1;
-      if (aDate < bDate) return -1;
-      if (aDate === bDate) return 0;
-    });
     res.json(data);
   }
   if (req.method === "POST") {
     const data = await getValidatePayload(req.body);
 
-    // TODO: handle create data
+    // TODO:
+    // handle create data
 
     res.statusCode = 200;
     res.json(data);

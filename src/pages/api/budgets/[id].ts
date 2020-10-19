@@ -9,7 +9,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("on fetching budget with id", id);
 
   if (req.method === "GET") {
-    // TODO: fetch real data
+    // TODO:
+    // fetch real data
     res.statusCode = 200;
     res.json({
       id: "item1",
@@ -22,12 +23,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "PUT") {
     const data = await getValidatePayload(req.body);
 
-    // TODO: update data
+    // TODO:
+    // update data
 
     res.statusCode = 200;
     res.json(data);
   } else if (req.method === "DELETE") {
-    // TODO: delete data
+    // TODO:
+    // delete data
 
     res.statusCode = 204;
     res.send("");
